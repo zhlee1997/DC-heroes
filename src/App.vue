@@ -1,26 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <AppHeader />
+  <div class=" w-full flex">
+    <DcHeroes />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppHeader from "./components/AppHeader";
+import DcHeroes from "./components/DcHeroes";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { AppHeader, DcHeroes },
+  computed: {
+    numberOfHeroes() {
+      return this.heroes.length;
+    },
+  },
+  data() {
+    return {
+      newHero: "",
+      heroes: [{ name: "a" }, { name: "b" }, { name: "c" }, { name: "d" }],
+    };
+  },
+  methods: {
+    addHero() {
+      if (this.newHero === "") return;
+      this.heroes.unshift({ name: this.newHero });
+      this.newHero = "";
+    },
+    remove(index) {
+      this.heroes = this.heroes.filter((_, i) => i !== index);
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
