@@ -1,16 +1,15 @@
 <template>
   <AppHeader />
-  <div class=" w-full flex">
-    <DcHeroes />
+  <div class="w-full flex">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader";
-import DcHeroes from "./components/DcHeroes";
 
 export default {
-  components: { AppHeader, DcHeroes },
+  components: { AppHeader },
   computed: {
     numberOfHeroes() {
       return this.heroes.length;
